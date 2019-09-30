@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.manageUser.dao.UserDao">
+    <insert id="regist" parameterType="cn.manageUser.pojo.User">
+        insert into
+        user (uname, uage, usex, upassword, uqq, uemail, uaddress)
+        values (#{uname}, #{uage}, #{usex}, #{upassword}, #{uqq}, #{uemail}, #{uaddress})
+    </insert>
+
+    <select id="login" resultType="cn.manageUser.pojo.User" parameterType="cn.manageUser.pojo.User">
+        select * from user where uname = #{uname} and upassword = #{upassword}
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.manageUser.dao.AdminDao">
+    <select id="login" resultType="cn.manageUser.pojo.Admin" parameterType="cn.manageUser.pojo.Admin">
+        select * from admin where aname = #{aname} and apassword = #{apassword}
+    </select>
+
+    <select id="findUserByName" resultType="cn.manageUser.pojo.User" parameterType="java.lang.String">
+        select * from user where uname = #{uname}
+    </select>
+
+    <select id="findAllUser" resultType="cn.manageUser.pojo.User" parameterType="cn.manageUser.pojo.User">
+        select * from user where 1 = 1
+        <if test="uname != null and uname != ''">
+            and uname like concat('%', #{uname}, '%')
+        </if>
+        <if test="uaddress != null and uaddress != ''">
+            and uaddress like concat('%', #{uaddress}, '%')
+        </if>
+    </select>
+
+    <select id="findById" resultType="cn.manageUser.pojo.User" parameterType="int">
+        select * from user where uid = #{uid}
+    </select>
+
+    <update id="updateUser" parameterType="cn.manageUser.pojo.User">
+        update user
+        set usex = #{usex}, uage = #{uage}, uaddress = #{uaddress}, uqq = #{uqq}, uemail = #{uemail}
+        where uname = #{uname}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where uid = #{uid}
+    </delete>
+</mapper>
