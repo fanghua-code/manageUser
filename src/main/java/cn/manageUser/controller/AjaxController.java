@@ -23,7 +23,7 @@ public class AjaxController {
     @ResponseBody
     public void userRegistAjax(@RequestBody User user, HttpServletResponse response) throws IOException {
         User registUser = service.findUserByName(user.getUname());
-        if (registUser==null){
+        if (registUser == null){
             //状态码1，表示该用户名不存在
             response.getWriter().print(1);
         }else {

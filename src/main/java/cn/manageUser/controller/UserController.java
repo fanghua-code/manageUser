@@ -44,7 +44,7 @@ public class UserController {
             return "user/login";
         }else {
             request.getSession().setAttribute("user", loginUser);
-            return "user/home";
+            return "redirect:home";
         }
     }
 
@@ -55,10 +55,10 @@ public class UserController {
         }else {
             int count = service.regist(user);
             if (count == 1){
-                return "user/login";
+                return "redirect:login";
             }else {
                 model.addAttribute("regist_msg", "内容不能为空！");
-                return "user/regist";
+                return "redirect:regist";
             }
         }
     }
@@ -71,6 +71,7 @@ public class UserController {
         List<User> onlines = (List<User>) application.getAttribute("online");
         onlines.remove(user);
         application.setAttribute("online", onlines);
+        request.getSession().removeAttribute("user");
         return "redirect:login";
     }
 
@@ -80,7 +81,8 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String toLogin() {
-        return "user/login";
-    }
+    public String toLogin() { return "user/login"; }
+
+    @RequestMapping("/home")
+    public String toHome() { return "user/home"; }
 }

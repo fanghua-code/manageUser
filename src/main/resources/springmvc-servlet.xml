@@ -24,9 +24,14 @@
     <!-- 配置拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>
-            <mvc:mapping path="/admin/adLogin"/>
-            <mvc:mapping path="/admin/home"/>
+            <mvc:mapping path="/admin/adLogin" />
+            <mvc:mapping path="/admin/home" />
             <bean class="cn.manageUser.interceptor.AdminLoginInterceptor" />
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/uLogin" />
+            <mvc:mapping path="/user/home" />
+            <bean class="cn.manageUser.interceptor.UserLoginInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

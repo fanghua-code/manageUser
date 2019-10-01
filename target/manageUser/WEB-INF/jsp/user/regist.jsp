@@ -30,13 +30,17 @@
                     dataType: "json",
                     success: function (data) {
                         var s_user = $("#s_user");
+                        var submit = $("#submit");
                         console.log("你好");
                         if (data == 1) {
                             s_user.html("该用户名可用");
                             s_user.css("color", "green");
+                            submit.removeAttr("disabled");
+                            submit.attr("disabled", false);
                         }else {
                             s_user.html("该用户名已存在！");
                             s_user.css("color", "red");
+                            submit.attr("disabled", true);
                         }
                     }
                 });
@@ -106,7 +110,7 @@
             </div>
         </div>
         <div class="form-group" style="text-align: center;">
-            <input class="btn btn-primary" type="submit" value="注册">
+            <input id="submit" class="btn btn-primary" type="submit" value="注册">
             <p style="margin: 5px 0 0 0;">已有账户，前往<a href="${pageContext.request.contextPath}/user/login">登录</a></p>
         </div>
     </form:form>
